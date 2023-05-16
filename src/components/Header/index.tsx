@@ -1,4 +1,4 @@
-import { Back } from "./Icon";
+import { Back } from "../Icon";
 import styles from "./header.module.css";
 
 const Header = (): JSX.Element => {

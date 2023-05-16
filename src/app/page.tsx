@@ -1,8 +1,8 @@
-import Image from "next/image";
 import styles from "./page.module.css";
+import Header from "@/components/Header";
 
 const Home = (): JSX.Element => {
-  return <div>ALOOO</div>;
+  return <Header />;
 };
 
 export default Home;

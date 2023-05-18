@@ -79,7 +79,7 @@ const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
                       ? "20px"
                       : "",
                   fontSize: "18px",
-                  color: "#75787B",
+                  color: "#333333",
                 }}
               >
                 {row.secondCol === "Sim" ? (

@@ -13,14 +13,6 @@ import { tableProps } from "@/interfaces/table.interface";
 import { Correct, Incorrect } from "../Icon";
 
 const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
-  // example how to pass data on rows
-  // const rows = [
-  //     { firstCol: 'morte', secondCol: 'aaa', thirdCol: 'aaa' },
-  //     { firstCol: 'morte', secondCol: 'aaa', thirdCol: 'aaa' },
-  //     { firstCol: 'morte', secondCol: 'aaa', thirdCol: 'aaa' }
-  // ];
-  // <Table head1="Coberturas" head2="Capital Segurado" rows={rows} />
-
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: "white",
@@ -61,6 +53,7 @@ const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
           Props.rows.map((row) => (
             <StyledTableRow key={row.firstCol}>
               <TableCell
+                onClick={() => Props.handleClick(row.firstCol)}
                 component="th"
                 scope="row"
                 sx={{

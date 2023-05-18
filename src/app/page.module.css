@@ -37,3 +37,20 @@
   border-radius: 0px;
 }
 
+.painelDetails {
+  background-color: white;
+  margin-left: 24px;
+  margin-right: 24px;
+  padding: 24px;
+  border: 1px solid #DDDDDD;
+  border-radius: 0px;
+  margin-top: 32px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #027BC2;
+  text-decoration: underline;
+}
+

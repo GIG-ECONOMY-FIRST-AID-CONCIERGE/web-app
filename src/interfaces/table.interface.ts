@@ -4,6 +4,7 @@ export interface rows {
   thirdCol: string;
   fourthCol?: string;
   fifthCol?: string;
+  handleClick?: any;
 }
 
 export interface tableProps {
@@ -13,4 +14,5 @@ export interface tableProps {
   head3: string;
   head4?: string;
   head5?: string;
+  handleClick?: any;
 }

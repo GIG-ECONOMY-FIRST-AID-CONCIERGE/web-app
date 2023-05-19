@@ -106,13 +106,6 @@ const Home = (): JSX.Element => {
 
   return (
     <>
-      <Header
-        isDetails={details.isDetails}
-        handleClick={() =>
-          setDetails({ isDetails: false, isHistory: false, title: "" })
-        }
-      />
-
       <Modal isOpen={samuModal} onClose={() => setSamuModal(false)}>
         <div className={styles.titleModal}>SAMU</div>
         <div className={styles.ctnRadio}>
@@ -231,6 +224,12 @@ const Home = (): JSX.Element => {
         </div>
       </Modal>
 
+      <Header
+        isDetails={details.isDetails}
+        handleClick={() =>
+          setDetails({ isDetails: false, isHistory: false, title: "" })
+        }
+      />
       {details.isDetails ? (
         <>
           <div className={styles.painelDetails}>
@@ -335,7 +334,7 @@ const Home = (): JSX.Element => {
                 }
               />
             )}
-          </div>{" "}
+          </div>
         </>
       )}
     </>

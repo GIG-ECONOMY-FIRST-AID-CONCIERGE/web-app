@@ -54,3 +54,68 @@
   text-decoration: underline;
 }
 
+.btnGroup {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+  margin-top: 16px;
+}
+
+.btnModalGroup {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.btnModalFinish {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.btnMargin {
+  margin-right: 24px;
+}
+
+.marginBotton {
+  margin-bottom: 24px;
+}
+
+.titleModal {
+  font-size: 24px;
+  color: #027BC2;
+  font-weight: bold;
+}
+
+.ctnRadio {
+  display: flex;
+  flex-direction: row;
+  margin-top: 24px;
+}
+
+.titleRadio {
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-right: 16px;
+}
+
+.description {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 24px;
+}
+
+.ctnCheck {
+  display: flex;
+  flex-direction: row;
+  margin-right: 24px;
+}
+
+.titleCheck {
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-right: 4px;
+}
+

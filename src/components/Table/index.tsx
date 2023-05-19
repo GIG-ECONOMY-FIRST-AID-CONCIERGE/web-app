@@ -61,6 +61,7 @@ const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
                   color: "#027BC2",
                   textDecoration: "underline",
                   cursor: "pointer",
+                  fontWeight: "bold",
                 }}
               >
                 {row.firstCol}

@@ -14,8 +14,6 @@ import {
 } from "@mui/material";
 import Modal from "@/components/Modal";
 
-export const useClient = true;
-
 const Home = (): JSX.Element => {
   const [option, setOption] = useState("service");
   const [details, setDetails] = useState({

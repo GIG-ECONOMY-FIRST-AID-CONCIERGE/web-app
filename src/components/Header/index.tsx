@@ -12,9 +12,9 @@ const Header: React.FC<headerProps> = ({ ...Props }) => {
       ) : (
         <div />
       )}
-      <div className={styles.company}>EMPRESA</div>
+      <div className={styles.company}>COMPANY</div>
       <div className={styles.user}>
-        OLÁ, <b>Atendente</b>
+        HELLO, <b>Attendant</b>
       </div>
     </div>
   );

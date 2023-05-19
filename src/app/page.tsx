@@ -36,61 +36,61 @@ const Home = (): JSX.Element => {
   });
   const rows = [
     {
-      firstCol: "Acidente 1",
-      secondCol: "Sim",
-      thirdCol: "Não",
+      firstCol: "Accident 1",
+      secondCol: "Yes",
+      thirdCol: "No",
       fourthCol: "10/01/2023",
-      fifthCol: "Sim",
+      fifthCol: "Yes",
     },
     {
-      firstCol: "Acidente 2",
-      secondCol: "Sim",
-      thirdCol: "Sim",
+      firstCol: "Accident 2",
+      secondCol: "Yes",
+      thirdCol: "Yes",
       fourthCol: "15/02/2023",
-      fifthCol: "Não",
+      fifthCol: "No",
     },
     {
-      firstCol: "Acidente 3",
-      secondCol: "Não",
-      thirdCol: "Sim",
+      firstCol: "Accident 3",
+      secondCol: "No",
+      thirdCol: "Yes",
       fourthCol: "10/03/2023",
-      fifthCol: "Sim",
+      fifthCol: "Yes",
     },
   ];
   const rows2 = [
     {
-      firstCol: "Acidente 1",
+      firstCol: "Accident 1",
       secondCol: "10/01/2023",
       thirdCol:
-        "Lorem ipsum dolor sit amet. Aut nobis galisum qui rerum omnis et voluptatem error. Ex eaque eligendi ea necessitatibus excepturi aut magnam possimus vel nihil earum!",
+        "Lorem ipsum dolor sit amet. Aut nobis galisum qui rerum omnis et voluptatem error. Ex eaque eligendi ea necessitatibus excepturi aut magnam posYesus vel nihil earum!",
     },
     {
-      firstCol: "Acidente 2",
+      firstCol: "Accident 2",
       secondCol: "15/02/2023",
       thirdCol:
         "Lorem ipsum dolor sit amet. Aut nobis galisum qui rerum omnis et voluptatem error. Ex eaque eligendi ea necessitatibus excepturi aut magnam possimus vel nihil earum!",
     },
     {
-      firstCol: "Acidente 3",
+      firstCol: "Accident 3",
       secondCol: "10/03/2023",
       thirdCol:
         "Lorem ipsum dolor sit amet. Aut nobis galisum qui rerum omnis et voluptatem error. Ex eaque eligendi ea necessitatibus excepturi aut magnam possimus vel nihil earum!",
     },
   ];
   const rowBoard1 = [
-    "Nome: Antônio Gomes Ribeiro",
-    "Telefone:  (11) 7681-5230",
-    "Celular:  (11) 97681-5230",
+    "Name: Antônio Gomes Ribeiro",
+    "Phone:  (11) 7681-5230",
+    "Cellphone:  (11) 97681-5230",
   ];
   const rowBoard2 = [
-    "Data Nascimento:  15/05/2000",
+    "Birthdate:  15/05/2000",
     "RG:  43.546.345-2",
     "CPF:  472.335.423-92",
   ];
   const rowBoard3 = [
-    "Endereço: Rua Três, 1890",
-    "Cidade:  Rio de Janeiro",
-    "Estado:  RJ",
+    "Address: Rua Três, 1890",
+    "City:  Rio de Janeiro",
+    "State:  RJ",
     "CEP:  22733-086",
   ];
 
@@ -109,18 +109,18 @@ const Home = (): JSX.Element => {
       <Modal isOpen={samuModal} onClose={() => setSamuModal(false)}>
         <div className={styles.titleModal}>SAMU</div>
         <div className={styles.ctnRadio}>
-          <div className={styles.titleRadio}>Solicitado?</div>
+          <div className={styles.titleRadio}>Requested?</div>
           <RadioGroup
             name="radioSamu"
             value={values.radioSamu}
             row
             onChange={handleChange}
           >
-            <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-            <FormControlLabel value="nao" control={<Radio />} label="Não" />
+            <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+            <FormControlLabel value="no" control={<Radio />} label="No" />
           </RadioGroup>
         </div>
-        <div className={styles.description}>Descrição:</div>
+        <div className={styles.description}>Description:</div>
         <TextField
           multiline
           rows={4}
@@ -136,30 +136,30 @@ const Home = (): JSX.Element => {
               onClick={() => setSamuModal(false)}
               className={styles.btnMargin}
             >
-              Cancelar
+              Cancel
             </Button>
             <Button variant="contained" onClick={() => setSamuModal(false)}>
-              Confirmar
+              Confirm
             </Button>
           </div>
         </div>
       </Modal>
 
       <Modal isOpen={assistanceModal} onClose={() => setAssistanceModal(false)}>
-        <div className={styles.titleModal}>Assitência Guincho</div>
+        <div className={styles.titleModal}>Tow Truck Assistance</div>
         <div className={styles.ctnRadio}>
-          <div className={styles.titleRadio}>Solicitado?</div>
+          <div className={styles.titleRadio}>Requested?</div>
           <RadioGroup
             name="radioAssistance"
             value={values.radioAssistance}
             row
             onChange={handleChange}
           >
-            <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-            <FormControlLabel value="nao" control={<Radio />} label="Não" />
+            <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+            <FormControlLabel value="no" control={<Radio />} label="No" />
           </RadioGroup>
         </div>
-        <div className={styles.description}>Descrição:</div>
+        <div className={styles.description}>Description:</div>
         <TextField
           multiline
           rows={4}
@@ -175,21 +175,21 @@ const Home = (): JSX.Element => {
               onClick={() => setAssistanceModal(false)}
               className={styles.btnMargin}
             >
-              Cancelar
+              Cancel
             </Button>
             <Button
               variant="contained"
               onClick={() => setAssistanceModal(false)}
             >
-              Confirmar
+              Confirm
             </Button>
           </div>
         </div>
       </Modal>
 
       <Modal isOpen={finishModal} onClose={() => setFinishModal(false)}>
-        <div className={styles.titleModal}>Deseja Finalizar?</div>
-        <div className={styles.description}>Descrição:</div>
+        <div className={styles.titleModal}>Do You Want To Finish?</div>
+        <div className={styles.description}>Description:</div>
         <TextField
           multiline
           rows={4}
@@ -201,7 +201,7 @@ const Home = (): JSX.Element => {
         <div className={styles.btnModalFinish}>
           <div className={styles.ctnCheck}>
             <div className={styles.titleCheck}>
-              Enviar orientações sobre abertura de Sinistro?
+              Do you want to send guidelines on opening a Claim?
             </div>
             <Checkbox
               checked={values.checkFinish}
@@ -215,10 +215,10 @@ const Home = (): JSX.Element => {
               onClick={() => setFinishModal(false)}
               className={styles.btnMargin}
             >
-              Cancelar
+              Cancel
             </Button>
             <Button variant="contained" onClick={() => setFinishModal(false)}>
-              Confirmar
+              Confirm
             </Button>
           </div>
         </div>
@@ -235,19 +235,19 @@ const Home = (): JSX.Element => {
           <div className={styles.painelDetails}>
             <div className={styles.title}>{details.title}</div>
             <Board
-              title="Dados do Segurado"
+              title="Insured Data"
               row1={rowBoard1}
               row2={rowBoard2}
               row3={rowBoard3}
             />
             <Board
-              title="Dados do Acidente"
+              title="Accident Data"
               row1={rowBoard1}
               row2={rowBoard2}
               row3={rowBoard3}
             />
             <Board
-              title="Dados do Veículo"
+              title="Vehicle Data"
               row1={rowBoard1}
               row2={rowBoard2}
               row3={rowBoard3}
@@ -260,14 +260,14 @@ const Home = (): JSX.Element => {
                 onClick={() => setSamuModal(true)}
                 className={styles.btnMargin}
               >
-                SAMU
+                Samu
               </Button>
               <Button
                 variant="contained"
                 onClick={() => setAssistanceModal(true)}
                 className={styles.btnMargin}
               >
-                Assistência Guincho
+                Tow Truck Assistance
               </Button>
               <Button
                 variant="contained"
@@ -275,7 +275,7 @@ const Home = (): JSX.Element => {
                 color="success"
                 className={styles.btnMargin}
               >
-                Finalizar Atendimento
+                Finish Attendance
               </Button>
             </div>
           ) : (
@@ -293,7 +293,7 @@ const Home = (): JSX.Element => {
                   : styles.optionsDisabled
               }
             >
-              Atendimento
+              Service
             </div>
             <div
               onClick={() => setOption("history")}
@@ -303,17 +303,17 @@ const Home = (): JSX.Element => {
                   : styles.optionsDisabled
               }
             >
-              Histórico
+              History
             </div>
           </div>
           <div className={styles.painel}>
             {option === "service" ? (
               <Table
-                head1="N. Acidente"
+                head1="Accident Number"
                 head2="Samu"
-                head3="Assistência Guincho"
-                head4="Data Ocorrido"
-                head5="Respondeu Notificação?"
+                head3="Tow Truck Assistance"
+                head4="Occurred Date"
+                head5="Replied Notification?"
                 rows={rows}
                 handleClick={(value: string) =>
                   setDetails({
@@ -325,9 +325,9 @@ const Home = (): JSX.Element => {
               />
             ) : (
               <Table
-                head1="N. Acidente"
-                head2="Data de Atendimento"
-                head3="Resumo do Ocorrido"
+                head1="Accident Number"
+                head2="Service Date"
+                head3="Summary"
                 rows={rows2}
                 handleClick={(value: string) =>
                   setDetails({ isDetails: true, isHistory: true, title: value })

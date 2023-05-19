@@ -69,16 +69,16 @@ const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
               <TableCell
                 sx={{
                   paddingLeft:
-                    row.thirdCol === "Sim" || row.thirdCol === "Não"
+                    row.thirdCol === "Yes" || row.thirdCol === "No"
                       ? "20px"
                       : "",
                   fontSize: "18px",
                   color: "#333333",
                 }}
               >
-                {row.secondCol === "Sim" ? (
+                {row.secondCol === "Yes" ? (
                   <Correct />
-                ) : row.secondCol === "Não" ? (
+                ) : row.secondCol === "No" ? (
                   <Incorrect />
                 ) : (
                   row.secondCol
@@ -87,16 +87,16 @@ const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
               <TableCell
                 sx={{
                   paddingLeft:
-                    row.thirdCol === "Sim" || row.thirdCol === "Não"
+                    row.thirdCol === "Yes" || row.thirdCol === "No"
                       ? "80px"
                       : "",
                   fontSize: "18px",
                   color: "#333333",
                 }}
               >
-                {row.thirdCol === "Sim" ? (
+                {row.thirdCol === "Yes" ? (
                   <Correct />
-                ) : row.thirdCol === "Não" ? (
+                ) : row.thirdCol === "No" ? (
                   <Incorrect />
                 ) : (
                   row.thirdCol
@@ -121,9 +121,9 @@ const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
                     color: "#333333",
                   }}
                 >
-                  {row.fifthCol === "Sim" ? (
+                  {row.fifthCol === "Yes" ? (
                     <Correct />
-                  ) : row.fifthCol === "Não" ? (
+                  ) : row.fifthCol === "No" ? (
                     <Incorrect />
                   ) : (
                     row.fifthCol

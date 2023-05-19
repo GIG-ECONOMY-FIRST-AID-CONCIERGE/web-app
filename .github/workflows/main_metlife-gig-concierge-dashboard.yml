@@ -21,10 +21,10 @@ jobs:
         with:
           node-version: '16.x'
 
-      - name: yarn install, build, and test
+      - name: yarn install, build and start.
         run: |
           yarn
-          yarn build
+          yarn run build
           yarn run start
 
       - name: Upload artifact for deployment job

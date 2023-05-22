@@ -9,8 +9,8 @@ import TableRow from "@mui/material/TableRow";
 import { styled } from "@mui/material/styles";
 
 //INTERFACE
-import { tableProps } from "@/interfaces/table.interface";
 import { Correct, Incorrect } from "../Icon";
+import { tableProps } from "../../interfaces/table.interface";
 
 const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -50,7 +50,7 @@ const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
       </TableHead>
       <TableBody>
         {Props.rows &&
-          Props.rows.map((row) => (
+          Props.rows.map((row: any) => (
             <StyledTableRow key={row.firstCol}>
               <TableCell
                 onClick={() => Props.handleClick(row.firstCol)}

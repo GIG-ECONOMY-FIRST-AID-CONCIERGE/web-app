@@ -1,5 +1,5 @@
+import { boardProps } from "../../interfaces/board.interface";
 import styles from "./board.module.css";
-import { boardProps } from "@/interfaces/board.interface";
 
 const Board: React.FC<boardProps> = ({ ...Props }) => {
   return (

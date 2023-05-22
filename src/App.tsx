@@ -1,9 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./page.module.css";
-import Header from "@/components/Header";
-import Table from "@/components/Table";
-import Board from "@/components/Board";
+
 import {
   Button,
   Checkbox,
@@ -12,7 +10,10 @@ import {
   RadioGroup,
   TextField,
 } from "@mui/material";
-import Modal from "@/components/Modal";
+import Modal from "./components/Modal";
+import Header from "./components/Header";
+import Board from "./components/Board";
+import Table from "./components/Table";
 
 const Home = (): JSX.Element => {
   const [option, setOption] = useState("service");
@@ -132,7 +133,9 @@ const Home = (): JSX.Element => {
             <Button
               variant="outlined"
               onClick={() => setSamuModal(false)}
-              className={styles.btnMargin}
+              style={{
+                marginRight: "24px",
+              }}
             >
               Cancel
             </Button>
@@ -171,7 +174,9 @@ const Home = (): JSX.Element => {
             <Button
               variant="outlined"
               onClick={() => setAssistanceModal(false)}
-              className={styles.btnMargin}
+              style={{
+                marginRight: "24px",
+              }}
             >
               Cancel
             </Button>
@@ -211,7 +216,9 @@ const Home = (): JSX.Element => {
             <Button
               variant="outlined"
               onClick={() => setFinishModal(false)}
-              className={styles.btnMargin}
+              style={{
+                marginRight: "24px",
+              }}
             >
               Cancel
             </Button>
@@ -256,14 +263,18 @@ const Home = (): JSX.Element => {
               <Button
                 variant="contained"
                 onClick={() => setSamuModal(true)}
-                className={styles.btnMargin}
+                style={{
+                  marginRight: "24px",
+                }}
               >
                 Samu
               </Button>
               <Button
                 variant="contained"
                 onClick={() => setAssistanceModal(true)}
-                className={styles.btnMargin}
+                style={{
+                  marginRight: "24px",
+                }}
               >
                 Tow Truck Assistance
               </Button>
@@ -271,7 +282,9 @@ const Home = (): JSX.Element => {
                 variant="contained"
                 onClick={() => setFinishModal(true)}
                 color="success"
-                className={styles.btnMargin}
+                style={{
+                  marginRight: "24px",
+                }}
               >
                 Finish Attendance
               </Button>

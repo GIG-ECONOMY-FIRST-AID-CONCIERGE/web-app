@@ -1,4 +1,4 @@
-import { headerProps } from "@/interfaces/header.interface";
+import { headerProps } from "../../interfaces/header.interface";
 import { Back } from "../Icon";
 import styles from "./header.module.css";
 

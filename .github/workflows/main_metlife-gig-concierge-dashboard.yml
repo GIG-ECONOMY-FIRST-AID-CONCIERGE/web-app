@@ -21,11 +21,9 @@ jobs:
         with:
           node-version: "18.x"
 
-      - name: Install dependencies with Yarn
-        run: yarn install --frozen-lockfile
-
-      - name: yarn build
+      - name: yarn install, yarn build
         run: |
+          yarn install
           yarn build
 
       - name: Upload artifact for deployment job

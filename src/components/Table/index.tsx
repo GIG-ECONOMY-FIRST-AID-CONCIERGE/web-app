@@ -1,6 +1,7 @@
 import React from "react";
 
 //MATERIAL
+import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -38,102 +39,104 @@ const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
   }));
 
   return (
-    <Table aria-label="simple table">
-      <TableHead>
-        <TableRow>
-          <StyledTableCell>{Props.head1}</StyledTableCell>
-          <StyledTableCell>{Props.head2}</StyledTableCell>
-          <StyledTableCell>{Props.head3}</StyledTableCell>
-          {Props.head4 && <StyledTableCell>{Props.head4}</StyledTableCell>}
-          {Props.head5 && <StyledTableCell>{Props.head5}</StyledTableCell>}
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {Props.rows &&
-          Props.rows.map((row: any) => (
-            <StyledTableRow key={row.firstCol}>
-              <TableCell
-                onClick={() => Props.handleClick(row.firstCol)}
-                component="th"
-                scope="row"
-                sx={{
-                  fontSize: "18px",
-                  color: "#027BC2",
-                  textDecoration: "underline",
-                  cursor: "pointer",
-                  fontWeight: "bold",
-                }}
-              >
-                {row.firstCol}
-              </TableCell>
-              <TableCell
-                sx={{
-                  paddingLeft:
-                    row.thirdCol === "Yes" || row.thirdCol === "No"
-                      ? "20px"
-                      : "",
-                  fontSize: "18px",
-                  color: "#333333",
-                }}
-              >
-                {row.secondCol === "Yes" ? (
-                  <Correct />
-                ) : row.secondCol === "No" ? (
-                  <Incorrect />
-                ) : (
-                  row.secondCol
-                )}
-              </TableCell>
-              <TableCell
-                sx={{
-                  paddingLeft:
-                    row.thirdCol === "Yes" || row.thirdCol === "No"
-                      ? "80px"
-                      : "",
-                  fontSize: "18px",
-                  color: "#333333",
-                }}
-              >
-                {row.thirdCol === "Yes" ? (
-                  <Correct />
-                ) : row.thirdCol === "No" ? (
-                  <Incorrect />
-                ) : (
-                  row.thirdCol
-                )}
-              </TableCell>
-              {Props.head4 && (
+    <TableContainer>
+      <Table aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell>{Props.head1}</StyledTableCell>
+            <StyledTableCell>{Props.head2}</StyledTableCell>
+            <StyledTableCell>{Props.head3}</StyledTableCell>
+            {Props.head4 && <StyledTableCell>{Props.head4}</StyledTableCell>}
+            {Props.head5 && <StyledTableCell>{Props.head5}</StyledTableCell>}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {Props.rows &&
+            Props.rows.map((row: any) => (
+              <StyledTableRow key={row.firstCol}>
                 <TableCell
+                  onClick={() => Props.handleClick(row.firstCol)}
+                  component="th"
+                  scope="row"
                   sx={{
                     fontSize: "18px",
-                    color: "#333333",
+                    color: "#027BC2",
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                    fontWeight: "bold",
                   }}
                 >
-                  {row.fourthCol}
+                  {row.firstCol}
                 </TableCell>
-              )}
-              {Props.head5 && (
                 <TableCell
-                  align="left"
                   sx={{
-                    paddingLeft: "90px",
+                    paddingLeft:
+                      row.thirdCol === "Yes" || row.thirdCol === "No"
+                        ? "20px"
+                        : "",
                     fontSize: "18px",
                     color: "#333333",
                   }}
                 >
-                  {row.fifthCol === "Yes" ? (
+                  {row.secondCol === "Yes" ? (
                     <Correct />
-                  ) : row.fifthCol === "No" ? (
+                  ) : row.secondCol === "No" ? (
                     <Incorrect />
                   ) : (
-                    row.fifthCol
+                    row.secondCol
                   )}
                 </TableCell>
-              )}
-            </StyledTableRow>
-          ))}
-      </TableBody>
-    </Table>
+                <TableCell
+                  sx={{
+                    paddingLeft:
+                      row.thirdCol === "Yes" || row.thirdCol === "No"
+                        ? "80px"
+                        : "",
+                    fontSize: "18px",
+                    color: "#333333",
+                  }}
+                >
+                  {row.thirdCol === "Yes" ? (
+                    <Correct />
+                  ) : row.thirdCol === "No" ? (
+                    <Incorrect />
+                  ) : (
+                    row.thirdCol
+                  )}
+                </TableCell>
+                {Props.head4 && (
+                  <TableCell
+                    sx={{
+                      fontSize: "18px",
+                      color: "#333333",
+                    }}
+                  >
+                    {row.fourthCol}
+                  </TableCell>
+                )}
+                {Props.head5 && (
+                  <TableCell
+                    align="left"
+                    sx={{
+                      paddingLeft: "90px",
+                      fontSize: "18px",
+                      color: "#333333",
+                    }}
+                  >
+                    {row.fifthCol === "Yes" ? (
+                      <Correct />
+                    ) : row.fifthCol === "No" ? (
+                      <Incorrect />
+                    ) : (
+                      row.fifthCol
+                    )}
+                  </TableCell>
+                )}
+              </StyledTableRow>
+            ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

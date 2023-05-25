@@ -33,6 +33,7 @@ const Home = (): JSX.Element => {
     detailsFinish: "",
     checkFinish: false,
   });
+
   const rows = [
     {
       firstCol: "Accident 1",

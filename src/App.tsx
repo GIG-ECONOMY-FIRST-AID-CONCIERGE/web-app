@@ -102,23 +102,49 @@ const Home = (): JSX.Element => {
       // TODO = fix accidentData type
       setRowboard1([
         // @ts-ignore
-        `Name: ${details?.accidentData?.partner?.name}`,
+        `Name: ${
+          details?.accidentData?.partner?.name
+            ? details?.accidentData?.partner?.name
+            : "-"
+        }`,
         // @ts-ignore
-        `Phone: ${details?.accidentData?.partner?.phone}`,
+        `Phone: ${
+          details?.accidentData?.partner?.phone
+            ? details?.accidentData?.partner?.phone
+            : "-"
+        }`,
         // @ts-ignore
-        `Birthdate: ${details?.accidentData?.partner?.birthDate}`,
+        `Birthdate: ${
+          details?.accidentData?.partner?.birthDate
+            ? details?.accidentData?.partner?.birthDate
+            : ""
+        }`,
         // @ts-ignore
-        `Birthdate: ${details?.accidentData?.partner?.birthDate}`,
+        `RG: ${
+          details?.accidentData?.partner?.rg
+            ? details?.accidentData?.partner?.rg
+            : "-"
+        }`,
         // @ts-ignore
-        `RG: ${details?.accidentData?.partner?.rg}`,
-        // @ts-ignore
-        `CPF: ${details?.accidentData?.partner?.cpf}`,
+        `CPF: ${
+          details?.accidentData?.partner?.cpf
+            ? details?.accidentData?.partner?.cpf
+            : "-"
+        }`,
         // @ts-ignore
         `Address: ${details?.accidentData?.partner?.address?.street}, ${details?.accidentData?.partner?.address?.number}`,
         // @ts-ignore
-        `City: ${details?.accidentData?.partner?.address?.city}`,
+        `City: ${
+          details?.accidentData?.partner?.address?.city
+            ? details?.accidentData?.partner?.address?.city
+            : "-"
+        }`,
         // @ts-ignore
-        `State: ${details?.accidentData?.partner?.address?.state}`,
+        `State: ${
+          details?.accidentData?.partner?.address?.state
+            ? details?.accidentData?.partner?.address?.state
+            : "-"
+        }`,
         // @ts-ignore
         `Geographic Coordinates: ${details?.accidentData?.partner?.address?.coordX},${details?.accidentData?.partner?.address?.coordY}`,
       ]);
@@ -135,7 +161,11 @@ const Home = (): JSX.Element => {
       });
       setRowboard2([
         // @ts-ignore
-        `Name: ${details?.accidentData?.partner?.name}`,
+        `Name: ${
+          details?.accidentData?.partner?.name
+            ? details?.accidentData?.partner?.name
+            : "-"
+        }`,
         `Samu: ${hasSamu}`,
         `Tow Truck Assistance: ${hasTruck}`,
         // @ts-ignore
@@ -143,21 +173,45 @@ const Home = (): JSX.Element => {
         // @ts-ignore
         `Address: ${details?.accidentData?.address?.street}, ${details?.accidentData?.address?.number}`,
         // @ts-ignore
-        `City: ${details?.accidentData?.address?.city}`,
+        `City: ${
+          details?.accidentData?.address?.city
+            ? details?.accidentData?.address?.city
+            : "-"
+        }`,
         // @ts-ignore
-        `State: ${details?.accidentData?.address?.state}`,
+        `State: ${
+          details?.accidentData?.address?.state
+            ? details?.accidentData?.address?.state
+            : "-"
+        }`,
       ]);
       // @ts-ignore
       if (details?.accidentData.vehicle) {
         setRowboard3([
           // @ts-ignore
-          `Model: ${details?.accidentData?.vehicle?.model}`,
+          `Model: ${
+            details?.accidentData?.vehicle?.model
+              ? details?.accidentData?.vehicle?.model
+              : "-"
+          }`,
           // @ts-ignore
-          `Manufacturer: ${details?.accidentData?.vehicle?.manufacturer}`,
+          `Manufacturer: ${
+            details?.accidentData?.vehicle?.manufacturer
+              ? details?.accidentData?.vehicle?.manufacturer
+              : "-"
+          }`,
           // @ts-ignore
-          `Manufacture Year: ${details?.accidentData?.vehicle?.manufacturerYear}`,
+          `Manufacture Year: ${
+            details?.accidentData?.vehicle?.manufactureYear
+              ? details?.accidentData?.vehicle?.manufactureYear
+              : "-"
+          }`,
           // @ts-ignore
-          `Chassi: ${details?.accidentData?.vehicle?.chassi}`,
+          `Chassi: ${
+            details?.accidentData?.vehicle?.chassi
+              ? details?.accidentData?.vehicle?.chassi
+              : "-"
+          }`,
           // @ts-ignore
         ]);
       }

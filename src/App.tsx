@@ -108,8 +108,6 @@ const Home = (): JSX.Element => {
         // @ts-ignore
         `Birthdate: ${details?.accidentData?.partner?.birthDate}`,
         // @ts-ignore
-        `Birthdate: ${details?.accidentData?.partner?.birthDate}`,
-        // @ts-ignore
         `RG: ${details?.accidentData?.partner?.rg}`,
         // @ts-ignore
         `CPF: ${details?.accidentData?.partner?.cpf}`,

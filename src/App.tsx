@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
 
 import {
@@ -14,6 +14,8 @@ import Modal from "./components/Modal";
 import Header from "./components/Header";
 import Board from "./components/Board";
 import Table from "./components/Table";
+import accidentService from "./services/accidentService";
+import transformDate from "./utils/transformDate";
 
 const Home = (): JSX.Element => {
   const [option, setOption] = useState("service");
@@ -33,50 +35,9 @@ const Home = (): JSX.Element => {
     detailsFinish: "",
     checkFinish: false,
   });
+  const [tableService, setTableService] = useState<any[]>([]);
+  const [tableHistory, setTableHistory] = useState<any[]>([]);
 
-  const rows = [
-    {
-      firstCol: "Accident 1",
-      secondCol: "Yes",
-      thirdCol: "No",
-      fourthCol: "10/01/2023",
-      fifthCol: "Yes",
-    },
-    {
-      firstCol: "Accident 2",
-      secondCol: "Yes",
-      thirdCol: "Yes",
-      fourthCol: "15/02/2023",
-      fifthCol: "No",
-    },
-    {
-      firstCol: "Accident 3",
-      secondCol: "No",
-      thirdCol: "Yes",
-      fourthCol: "10/03/2023",
-      fifthCol: "Yes",
-    },
-  ];
-  const rows2 = [
-    {
-      firstCol: "Accident 1",
-      secondCol: "10/01/2023",
-      thirdCol:
-        "Lorem ipsum dolor sit amet. Aut nobis galisum qui rerum omnis et voluptatem error. Ex eaque eligendi ea necessitatibus excepturi aut magnam posYesus vel nihil earum!",
-    },
-    {
-      firstCol: "Accident 2",
-      secondCol: "15/02/2023",
-      thirdCol:
-        "Lorem ipsum dolor sit amet. Aut nobis galisum qui rerum omnis et voluptatem error. Ex eaque eligendi ea necessitatibus excepturi aut magnam possimus vel nihil earum!",
-    },
-    {
-      firstCol: "Accident 3",
-      secondCol: "10/03/2023",
-      thirdCol:
-        "Lorem ipsum dolor sit amet. Aut nobis galisum qui rerum omnis et voluptatem error. Ex eaque eligendi ea necessitatibus excepturi aut magnam possimus vel nihil earum!",
-    },
-  ];
   const rowBoard1 = [
     "Name: Antônio Gomes Ribeiro",
     "Phone:  (11) 7681-5230",
@@ -93,6 +54,60 @@ const Home = (): JSX.Element => {
     "State:  RJ",
     "CEP:  22733-086",
   ];
+
+  const populateServiceTable = (data: any) => {
+    console.log("teste");
+    const dataTable: any[] = [];
+    const processedAccidents: Set<number> = new Set();
+
+    data.forEach((value: any) => {
+      value?.assistances.forEach((assistance: any) => {
+        const accidentId = value.id;
+
+        if (!processedAccidents.has(accidentId)) {
+          const tableRow = {
+            firstCol: "Accident " + accidentId,
+            secondCol: assistance.type === 1 ? "Yes" : "No",
+            thirdCol: assistance.type === 2 ? "Yes" : "No",
+            fourthCol: transformDate(value.occurredDate),
+            fifthCol: value.repliedNotification ? "Yes" : "No",
+          };
+          dataTable.push(tableRow);
+          processedAccidents.add(accidentId);
+        }
+      });
+    });
+
+    setTableService(dataTable);
+  };
+
+  const populateHistoryTable = (data: any) => {
+    const dataTable: any[] = [];
+    data.forEach((value: any) => {
+      dataTable.push({
+        firstCol: "Accident " + value.id,
+        secondCol: transformDate(value.occurredDate),
+        thirdCol: value.description,
+      });
+    });
+
+    setTableHistory(dataTable);
+  };
+
+  useEffect(() => {
+    accidentService
+      .getAccident(option === "service" ? "1" : "2")
+      .then((response: any) => {
+        if (option === "service") {
+          populateServiceTable(response?.data);
+        } else {
+          populateHistoryTable(response?.data);
+        }
+      })
+      .catch((error: any) => {
+        console.error("error: ", error);
+      });
+  }, [option]);
 
   const handleChange = (evt: any) => {
     setValues({
@@ -326,7 +341,7 @@ const Home = (): JSX.Element => {
                 head3="Tow Truck Assistance"
                 head4="Occurred Date"
                 head5="Replied Notification?"
-                rows={rows}
+                rows={tableService.length > 0 ? tableService : []}
                 handleClick={(value: string) =>
                   setDetails({
                     isDetails: true,
@@ -340,7 +355,7 @@ const Home = (): JSX.Element => {
                 head1="Accident Number"
                 head2="Service Date"
                 head3="Summary"
-                rows={rows2}
+                rows={tableHistory.length > 0 ? tableHistory : []}
                 handleClick={(value: string) =>
                   setDetails({ isDetails: true, isHistory: true, title: value })
                 }

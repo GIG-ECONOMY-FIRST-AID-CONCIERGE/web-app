@@ -52,8 +52,8 @@ const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
         </TableHead>
         <TableBody>
           {Props.rows &&
-            Props.rows.map((row: any) => (
-              <StyledTableRow key={row.firstCol}>
+            Props.rows.map((row: any, index: number) => (
+              <StyledTableRow key={index}>
                 <TableCell
                   onClick={() => Props.handleClick(row.firstCol)}
                   component="th"
@@ -70,10 +70,6 @@ const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
                 </TableCell>
                 <TableCell
                   sx={{
-                    paddingLeft:
-                      row.thirdCol === "Yes" || row.thirdCol === "No"
-                        ? "20px"
-                        : "",
                     fontSize: "18px",
                     color: "#333333",
                   }}
@@ -88,10 +84,6 @@ const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
                 </TableCell>
                 <TableCell
                   sx={{
-                    paddingLeft:
-                      row.thirdCol === "Yes" || row.thirdCol === "No"
-                        ? "80px"
-                        : "",
                     fontSize: "18px",
                     color: "#333333",
                   }}
@@ -118,7 +110,6 @@ const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
                   <TableCell
                     align="left"
                     sx={{
-                      paddingLeft: "90px",
                       fontSize: "18px",
                       color: "#333333",
                     }}

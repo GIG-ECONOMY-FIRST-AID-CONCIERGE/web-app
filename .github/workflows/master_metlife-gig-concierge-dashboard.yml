@@ -21,9 +21,15 @@ jobs:
         with:
           node-version: "16.x"
 
+      - name: Check if node_modules exists
+        id: check-node-modules
+        run: echo "::set-output name=exists::$(ls node_modules 2>/dev/null | wc -l)"
+
       - name: npm install, build
         run: |
-          npm install
+          if [[ "${{ steps.check-node-modules.outputs.exists }}" == "0" ]]; then
+            npm install
+          fi
           npm run build --if-present
 
       - name: Upload artifact for deployment job

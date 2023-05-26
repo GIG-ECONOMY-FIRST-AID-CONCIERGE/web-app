@@ -6,7 +6,7 @@ const Board: React.FC<boardProps> = ({ ...Props }) => {
     <>
       <div className={styles.title}>{Props.title}</div>
       <div className={styles.board}>
-        <div className={styles.row}>
+        <div className={`${styles.row} ${styles.wrap}`}>
           {Props.row1 &&
             Props.row1.map((value: string, index: number) => (
               <div key={index} className={styles.items}>
@@ -14,24 +14,6 @@ const Board: React.FC<boardProps> = ({ ...Props }) => {
               </div>
             ))}
         </div>
-        <div className={styles.row}>
-          {Props.row2 &&
-            Props.row2.map((value: string, index: number) => (
-              <div key={index} className={styles.items}>
-                {value}
-              </div>
-            ))}
-        </div>
-        {Props.row3 && (
-          <div className={styles.row}>
-            {Props.row3 &&
-              Props.row3.map((value: string, index: number) => (
-                <div key={index} className={styles.items}>
-                  {value}
-                </div>
-              ))}
-          </div>
-        )}
       </div>
     </>
   );

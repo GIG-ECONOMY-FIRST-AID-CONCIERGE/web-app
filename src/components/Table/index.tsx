@@ -55,7 +55,9 @@ const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
             Props.rows.map((row: any, index: number) => (
               <StyledTableRow key={index}>
                 <TableCell
-                  onClick={() => Props.handleClick(row.firstCol)}
+                  onClick={() =>
+                    Props.handleClick(row.firstCol, row.accidentData)
+                  }
                   component="th"
                   scope="row"
                   sx={{

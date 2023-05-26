@@ -23,6 +23,7 @@ const Home = (): JSX.Element => {
     isDetails: false,
     isHistory: false,
     title: "",
+    accidentData: {},
   });
   const [samuModal, setSamuModal] = useState(false);
   const [assistanceModal, setAssistanceModal] = useState(false);
@@ -37,26 +38,11 @@ const Home = (): JSX.Element => {
   });
   const [tableService, setTableService] = useState<any[]>([]);
   const [tableHistory, setTableHistory] = useState<any[]>([]);
-
-  const rowBoard1 = [
-    "Name: Antônio Gomes Ribeiro",
-    "Phone:  (11) 7681-5230",
-    "Cellphone:  (11) 97681-5230",
-  ];
-  const rowBoard2 = [
-    "Birthdate:  15/05/2000",
-    "RG:  43.546.345-2",
-    "CPF:  472.335.423-92",
-  ];
-  const rowBoard3 = [
-    "Address: Rua Três, 1890",
-    "City:  Rio de Janeiro",
-    "State:  RJ",
-    "CEP:  22733-086",
-  ];
+  const [rowBoard1, setRowboard1] = useState<string[]>([]);
+  const [rowBoard2, setRowboard2] = useState<string[]>([]);
+  const [rowBoard3, setRowboard3] = useState<string[]>([]);
 
   const populateServiceTable = (data: any) => {
-    console.log("teste");
     const dataTable: any[] = [];
     const processedAccidents: Set<number> = new Set();
 
@@ -71,6 +57,7 @@ const Home = (): JSX.Element => {
             thirdCol: assistance.type === 2 ? "Yes" : "No",
             fourthCol: transformDate(value.occurredDate),
             fifthCol: value.repliedNotification ? "Yes" : "No",
+            accidentData: value,
           };
           dataTable.push(tableRow);
           processedAccidents.add(accidentId);
@@ -88,6 +75,7 @@ const Home = (): JSX.Element => {
         firstCol: "Accident " + value.id,
         secondCol: transformDate(value.occurredDate),
         thirdCol: value.description,
+        accidentData: value,
       });
     });
 
@@ -108,6 +96,73 @@ const Home = (): JSX.Element => {
         console.error("error: ", error);
       });
   }, [option]);
+
+  useEffect(() => {
+    if (details.isDetails) {
+      // TODO = fix accidentData type
+      setRowboard1([
+        // @ts-ignore
+        `Name: ${details?.accidentData?.partner?.name}`,
+        // @ts-ignore
+        `Phone: ${details?.accidentData?.partner?.phone}`,
+        // @ts-ignore
+        `Birthdate: ${details?.accidentData?.partner?.birthDate}`,
+        // @ts-ignore
+        `Birthdate: ${details?.accidentData?.partner?.birthDate}`,
+        // @ts-ignore
+        `RG: ${details?.accidentData?.partner?.rg}`,
+        // @ts-ignore
+        `CPF: ${details?.accidentData?.partner?.cpf}`,
+        // @ts-ignore
+        `Address: ${details?.accidentData?.partner?.address?.street}, ${details?.accidentData?.partner?.address?.number}`,
+        // @ts-ignore
+        `City: ${details?.accidentData?.partner?.address?.city}`,
+        // @ts-ignore
+        `State: ${details?.accidentData?.partner?.address?.state}`,
+        // @ts-ignore
+        `Geographic Coordinates: ${details?.accidentData?.partner?.address?.coordX},${details?.accidentData?.partner?.address?.coordY}`,
+      ]);
+      let hasSamu = "NO";
+      let hasTruck = "NO";
+      // @ts-ignore
+      details?.accidentData?.assistances?.forEach((assistance: any) => {
+        if (assistance.type === 1) {
+          hasSamu = "YES";
+        }
+        if (assistance.type === 2) {
+          hasTruck = "YES";
+        }
+      });
+      setRowboard2([
+        // @ts-ignore
+        `Name: ${details?.accidentData?.partner?.name}`,
+        `Samu: ${hasSamu}`,
+        `Tow Truck Assistance: ${hasTruck}`,
+        // @ts-ignore
+        `Geographic Coordinates: ${details?.accidentData?.address?.coordX},${details?.accidentData?.address?.coordY}`,
+        // @ts-ignore
+        `Address: ${details?.accidentData?.address?.street}, ${details?.accidentData?.address?.number}`,
+        // @ts-ignore
+        `City: ${details?.accidentData?.address?.city}`,
+        // @ts-ignore
+        `State: ${details?.accidentData?.address?.state}`,
+      ]);
+      // @ts-ignore
+      if (details?.accidentData.vehicle) {
+        setRowboard3([
+          // @ts-ignore
+          `Model: ${details?.accidentData?.vehicle?.model}`,
+          // @ts-ignore
+          `Manufacturer: ${details?.accidentData?.vehicle?.manufacturer}`,
+          // @ts-ignore
+          `Manufacture Year: ${details?.accidentData?.vehicle?.manufacturerYear}`,
+          // @ts-ignore
+          `Chassi: ${details?.accidentData?.vehicle?.chassi}`,
+          // @ts-ignore
+        ]);
+      }
+    }
+  }, [details]);
 
   const handleChange = (evt: any) => {
     setValues({
@@ -248,31 +303,21 @@ const Home = (): JSX.Element => {
       <Header
         isDetails={details.isDetails}
         handleClick={() =>
-          setDetails({ isDetails: false, isHistory: false, title: "" })
+          setDetails({
+            isDetails: false,
+            isHistory: false,
+            title: "",
+            accidentData: {},
+          })
         }
       />
       {details.isDetails ? (
         <>
           <div className={styles.painelDetails}>
             <div className={styles.title}>{details.title}</div>
-            <Board
-              title="Insured Data"
-              row1={rowBoard1}
-              row2={rowBoard2}
-              row3={rowBoard3}
-            />
-            <Board
-              title="Accident Data"
-              row1={rowBoard1}
-              row2={rowBoard2}
-              row3={rowBoard3}
-            />
-            <Board
-              title="Vehicle Data"
-              row1={rowBoard1}
-              row2={rowBoard2}
-              row3={rowBoard3}
-            />
+            <Board title="Insured Data" row1={rowBoard1} />
+            <Board title="Accident Data" row1={rowBoard2} />
+            <Board title="Vehicle Data" row1={rowBoard3} />
           </div>
           {!details.isHistory ? (
             <div className={styles.btnGroup}>
@@ -342,11 +387,12 @@ const Home = (): JSX.Element => {
                 head4="Occurred Date"
                 head5="Replied Notification?"
                 rows={tableService.length > 0 ? tableService : []}
-                handleClick={(value: string) =>
+                handleClick={(value: string, data: any) =>
                   setDetails({
                     isDetails: true,
                     isHistory: false,
                     title: value,
+                    accidentData: data,
                   })
                 }
               />
@@ -356,8 +402,13 @@ const Home = (): JSX.Element => {
                 head2="Service Date"
                 head3="Summary"
                 rows={tableHistory.length > 0 ? tableHistory : []}
-                handleClick={(value: string) =>
-                  setDetails({ isDetails: true, isHistory: true, title: value })
+                handleClick={(value: string, data: any) =>
+                  setDetails({
+                    isDetails: true,
+                    isHistory: true,
+                    title: value,
+                    accidentData: data,
+                  })
                 }
               />
             )}

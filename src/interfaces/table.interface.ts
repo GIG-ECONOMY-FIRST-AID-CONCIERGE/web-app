@@ -5,6 +5,7 @@ export interface rows {
   fourthCol?: string;
   fifthCol?: string;
   handleClick?: any;
+  accidentData?: any;
 }
 
 export interface tableProps {

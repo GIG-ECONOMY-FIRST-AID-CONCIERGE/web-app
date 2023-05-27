@@ -24,7 +24,6 @@ const MuiTable: React.FC<tableProps> = ({ ...Props }) => {
       fontSize: "18px",
     },
   }));
-
   const StyledTableRow = styled(TableRow)(() => ({
     "&:nth-of-type(odd)": {
       backgroundColor: "#F6F6F6",

@@ -12,7 +12,6 @@
 .row {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 
 .wrap {
@@ -23,5 +22,5 @@
   padding-top: 24px;
   font-size: 18px;
   font-weight: bold;
-  margin-right: 10px; 
+  margin-right: 64px; 
 }

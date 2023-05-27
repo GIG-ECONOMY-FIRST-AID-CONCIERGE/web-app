@@ -118,7 +118,7 @@ const Home = (): JSX.Element => {
         // @ts-ignore
         `State: ${details?.accidentData?.partner?.address?.state}`,
         // @ts-ignore
-        `Geographic Coordinates: ${details?.accidentData?.partner?.address?.coordX},${details?.accidentData?.partner?.address?.coordY}`,
+        `Geographic Coordinates: ${details?.accidentData?.partner?.address?.coordX}, ${details?.accidentData?.partner?.address?.coordY}`,
       ]);
       let hasSamu = "NO";
       let hasTruck = "NO";
@@ -137,7 +137,7 @@ const Home = (): JSX.Element => {
         `Samu: ${hasSamu}`,
         `Tow Truck Assistance: ${hasTruck}`,
         // @ts-ignore
-        `Geographic Coordinates: ${details?.accidentData?.address?.coordX},${details?.accidentData?.address?.coordY}`,
+        `Geographic Coordinates: ${details?.accidentData?.address?.coordX}, ${details?.accidentData?.address?.coordY}`,
         // @ts-ignore
         `Address: ${details?.accidentData?.address?.street}, ${details?.accidentData?.address?.number}`,
         // @ts-ignore

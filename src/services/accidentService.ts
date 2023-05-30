@@ -4,8 +4,8 @@ const getAccident = (status: string) => {
   return api.get("Accident/" + status);
 };
 
-const putAccident = (status: string, id: string, values: any) => {
-  return api.put("Accident/" + status + "/" + id, values);
+const putAccident = (status: string, id: string) => {
+  return api.put("Accident/" + status + "/" + id);
 };
 
 const accidentService = {

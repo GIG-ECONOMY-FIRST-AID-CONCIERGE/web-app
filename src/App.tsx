@@ -15,6 +15,7 @@ import Board from "./components/Board";
 import Table from "./components/Table";
 import accidentService from "./services/accidentService";
 import transformDate from "./utils/transformDate";
+import Loading from "./components/Loading/loading";
 
 const Home = (): JSX.Element => {
   const [option, setOption] = useState("service");
@@ -40,6 +41,7 @@ const Home = (): JSX.Element => {
   const [rowBoard1, setRowboard1] = useState<string[]>([]);
   const [rowBoard2, setRowboard2] = useState<string[]>([]);
   const [rowBoard3, setRowboard3] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const populateServiceTable = (data: any) => {
     const dataTable: any[] = [];
@@ -81,7 +83,8 @@ const Home = (): JSX.Element => {
     setTableHistory(dataTable);
   };
 
-  useEffect(() => {
+  const getAPI = () => {
+    setIsLoading(true);
     accidentService
       .getAccident(option === "service" ? "1" : "2")
       .then((response: any) => {
@@ -93,10 +96,37 @@ const Home = (): JSX.Element => {
       })
       .catch((error: any) => {
         console.error("error: ", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    setIsLoading(true);
+    accidentService
+      .getAccident(option === "service" ? "1" : "2")
+      .then((response: any) => {
+        if (option === "service") {
+          populateServiceTable(response?.data);
+        } else {
+          populateHistoryTable(response?.data);
+        }
+      })
+      .catch((error: any) => {
+        console.error("error: ", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [option]);
 
   useEffect(() => {
+    console.log(
+      "details?.accidentData?.repliedNotification: ",
+      // @ts-ignore
+      details?.accidentData?.repliedNotification
+    );
     if (details.isDetails) {
       // TODO = fix accidentData type
       setRowboard1([
@@ -171,8 +201,47 @@ const Home = (): JSX.Element => {
     });
   };
 
+  const putAPI = () => {
+    setIsLoading(true);
+    accidentService
+      .putAccident(
+        "2",
+        // @ts-ignore
+        details?.accidentData?.id
+      )
+      .then(() => {
+        getAPI();
+        setDetails({
+          isDetails: false,
+          isHistory: false,
+          title: "",
+          accidentData: {},
+        });
+      })
+      .catch((error: any) => {
+        console.error("error: ", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  const submitValues = (typeModal: string) => {
+    if (typeModal === "samu") {
+      setSamuModal(false);
+    }
+    if (typeModal === "assistance") {
+      setAssistanceModal(false);
+    }
+    if (typeModal === "finish") {
+      putAPI();
+      setFinishModal(false);
+    }
+  };
+
   return (
     <>
+      <Loading loading={isLoading} />
       <Modal isOpen={samuModal} onClose={() => setSamuModal(false)}>
         <div className={styles.titleModal}>SAMU</div>
         <div className={styles.ctnRadio}>
@@ -207,7 +276,7 @@ const Home = (): JSX.Element => {
             >
               Cancel
             </Button>
-            <Button variant="contained" onClick={() => setSamuModal(false)}>
+            <Button variant="contained" onClick={() => submitValues("samu")}>
               Confirm
             </Button>
           </div>
@@ -250,7 +319,7 @@ const Home = (): JSX.Element => {
             </Button>
             <Button
               variant="contained"
-              onClick={() => setAssistanceModal(false)}
+              onClick={() => submitValues("assistance")}
             >
               Confirm
             </Button>
@@ -290,7 +359,7 @@ const Home = (): JSX.Element => {
             >
               Cancel
             </Button>
-            <Button variant="contained" onClick={() => setFinishModal(false)}>
+            <Button variant="contained" onClick={() => submitValues("finish")}>
               Confirm
             </Button>
           </div>
